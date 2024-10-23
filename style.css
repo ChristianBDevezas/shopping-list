@@ -177,3 +177,29 @@ form input[type="text"]:focus {
 .delete:hover {
     background-color: #c22d2d;
 }
+
+/*Media Queries*/
+@media(max-width: 900px) {
+    .container::before,
+    .container::after {
+        left: -9px;
+        bottom: 0px;
+        padding: 3px 2px 0 3px;
+    }
+}
+
+@media(max-width: 700px) {
+    .container::before,
+    .container::after {
+        width: 103%;
+        top: -9px;
+        left: -10px;
+    }
+}
+
+@media(max-width: 500px) {
+    .container::before,
+    .container::after {
+        width: 104%;
+    }
+}
