@@ -1,0 +1,179 @@
+body {
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 1px;
+    color: #252525;
+    /* background: linear-gradient(to top, #dad4ec 0%, #dad4ec 1%, #f3e7e9 100%); */
+    background: radial-gradient(circle at 10% 20%, rgb(0, 102, 161) 0%, rgb(0, 68, 108) 90%);
+    padding: 8px 0;
+}
+
+h1, h2 {
+    font-weight: 600;
+}
+
+.container {
+    width: 90%;
+    margin: 20px auto;
+    max-width: 900px;
+    box-shadow: 6px 2px 5px rgba(0, 0, 0, .5);
+    padding: 0 0 20px;
+    border: 2px solid rgba(177, 180, 177, 0.8);
+    border-radius: 5px;
+    background-color: white;
+    position: relative;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+.container::before,
+.container::after {
+    content: "";
+    position: absolute;
+    width: 102%;
+    height: 102%;
+    top: -8px;
+    left: -10px;
+    right: -7px;
+    bottom: -7px;
+    z-index: -1;
+    /* background: linear-gradient(90deg, #023e5e 90%, #010615, #1a72bb); */
+    background-image: conic-gradient(from var(--angle), #023e5e, #010615, #1a72bb);
+    padding: 2px;
+    border-radius: 5px;
+    box-shadow: -2px -2px 4px rgba(255, 255, 255, .5);    
+    animation: 2.5s spin linear infinite;
+}
+
+.container::before {
+    filter: blur(1.4rem);
+    opacity: .6;
+}
+@keyframes spin {
+    from {
+      --angle: 0deg;
+    }
+    to {
+      --angle: 360deg;
+    }
+}
+
+.header {
+    background-color: #4ac550;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(158, 160, 158);
+}
+
+.header h1 {
+    text-align: center;
+    margin: .5em 0;
+}
+
+.header input[type="text"] {
+    width: 90%;
+    max-width: 250px;
+    margin: 20px auto;
+    display: block;
+    padding: 7px;
+    border: 2px solid #353434;
+    border-radius: 4px;
+    font-size: 1em;
+    color: rgb(50, 50, 50);
+}
+
+#check {
+    max-width: 280px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#check label {
+    font-size: 1.03rem;
+}
+
+#check #hide {
+    width: 1.4em;
+    height: 1.4rem;
+    margin: 4px 0 0 5px;
+    display: inline-block;
+    accent-color: green;
+}
+
+#add-item {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+form input[type="text"]:focus {
+    border: 2px solid #058005 !important;
+    outline: none;
+}
+
+#add-item input {
+    width: calc(230px + 2vw);
+    padding: .5em;
+    border: 2px solid rgb(194, 194, 194);
+    font-size: 1em;
+    border-radius: 4px;
+    /* float: left; */
+}
+
+#add-item button {
+    width: 80px;
+    margin-left: 10px;
+    padding: 8px 12px;
+    color: white;
+    background-color: #4ac550;
+    border: 1px solid rgb(104, 103, 103);
+    border-radius: 3px;
+    font-size: 1em;
+    cursor: pointer;
+    outline: none;
+    transition: all .45s;
+}
+#add-item button:hover {
+    background-color: #197e4b;
+    border: 1px solid rgb(165, 167, 168);
+}
+
+#grocery-list {
+    margin: 2em;
+}
+
+#grocery-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+#grocery-list li {
+    padding: 1em;
+    border-left: 5px solid rgb(210, 212, 213);
+    margin: 1.5em 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all .45s;
+}
+#grocery-list li:hover {
+    border-left: 5px solid #dd5e5e;
+}
+
+.delete {
+    /* float: right; */
+    background-color: #dd5e5e;
+    padding: 5px 7px;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    border: 1px solid black;
+    transition: all .45s;
+}
+.delete:hover {
+    background-color: #c22d2d;
+}
