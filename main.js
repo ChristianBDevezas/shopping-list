@@ -122,13 +122,12 @@ search.addEventListener('keyup', (e) => {
     const textLowerCase = text.toLowerCase();
     // console.log(textLowerCase);
 
-    // let's grab each li tag (3 ways)
+    // grab each li tag
     // const groceries = document.getElementsByTagName('li');
     const groceries = document.querySelectorAll('#grocery-list li');
-    // const groceries = groceryList.querySelectorAll('li');
     // console.log(groceries);
 
-    // let's convert the groceries to an array, so we can access the forEach method
+    // convert the groceries to an array, so we can access the forEach method
     const groceriesArray = Array.from(groceries);
 
     // loop through each grocery item
@@ -140,8 +139,7 @@ search.addEventListener('keyup', (e) => {
         const groceryNameLower = groceryName.toLowerCase();
         // console.log(groceryNameLower);
 
-        // now we can use indexOf to see if text can be found within our grocery list.
-        // If nothing is found, a value of -1 is returned and we can hide the item.
+        // If nothing is found, a value of -1 is returned and we can hide the item
         // if(groceryNameLower.indexOf(textLowerCase) == -1) {
         //     item.style.display = 'none';
         // }
