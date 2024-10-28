@@ -67,6 +67,7 @@ formAdd.addEventListener('submit', (e) => {
 
     if(inputTextValue == "" || inputTextValue.length < 2) {
         alert("Type some item to display!");
+        inputText.focus();
     }
     else {
         // execute checkText function to check if item already exists, passing inputTextValue as argument
@@ -76,6 +77,7 @@ formAdd.addEventListener('submit', (e) => {
         if(!checkResult) {
            // clear the input box
             inputText.value = null;
+            inputText.blur();
 
             // create the list items dynamically
             const li = document.createElement('li');
