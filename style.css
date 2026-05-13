@@ -14,7 +14,7 @@ h1, h2 {
 
 .container {
     width: 90%;
-    margin: 20px auto;
+    margin: 25px auto 40px auto;
     max-width: 900px;
     box-shadow: 6px 2px 5px rgba(0, 0, 0, .5);
     padding: 0 0 20px;
@@ -64,7 +64,7 @@ h1, h2 {
 .header {
     background-color: #4ac550;
     padding: 10px 0;
-    border-bottom: 1px solid rgb(158, 160, 158);
+    border-bottom: 2px solid #555555;
 }
 
 .header h1 {
@@ -107,7 +107,7 @@ h1, h2 {
 #add-item {
     display: flex;
     justify-content: center;
-    margin-top: 12px;
+    margin-top: 16px;
 }
 
 form input[type="text"]:focus {
@@ -147,6 +147,10 @@ form input[type="text"]:focus {
 
 #grocery-list h2 {
     margin-left: 1rem;
+}
+
+#grocery-list h4.hide {
+    display: none;
 }
 
 #grocery-list ul {

@@ -3,14 +3,18 @@ const groceryListUl = document.querySelector('#grocery-list ul');
 console.log(groceryListUl);
 
 groceryListUl.addEventListener('click', remove);
+
 // define our handler function
 function remove(e) {
     const target = e.target;
+    
     // if(target.classList.contains("delete"))
     if(target.className == 'delete') {
         // target.parentElement.remove();
         const li = target.parentElement;
         li.remove();
+
+        showEmptyListMessage();
     }
 };
 
@@ -19,14 +23,25 @@ const checklabel = document.querySelector('#check label');
 const checkbox = document.querySelector('#hide');
 const groceryList = document.getElementById('grocery-list');
 
+const container = document.querySelector(".container");
+const setHeightContainer = document.createElement('style');
+
 checkbox.addEventListener('change', () => {
     if(checkbox.checked) {
         groceryList.style.display = 'none';
         checklabel.textContent = 'Show list';
+
+        // Set height of pseudo-elements to 105%        
+        setHeightContainer.textContent = `.container::before, .container::after { height: 105% !important; }`;
+        document.head.appendChild(setHeightContainer);
     }
     else {
         groceryList.style.display = 'block';
         checklabel.textContent = 'Hide list';
+
+        // Set height of pseudo-elements to 102%        
+        setHeightContainer.textContent = `.container::before, .container::after { height: 102% !important; }`;
+        document.head.appendChild(setHeightContainer);
     }
 });
 
@@ -50,13 +65,42 @@ function checkText(inputText) {
     return textExists;
 };
 
-// 4) Add items
+// 4) Check if List of items is empty
+function showEmptyListMessage() {
+    const groceryListItems = document.querySelectorAll('#grocery-list ul li');
+    const groceryListMessage = document.querySelector('#grocery-list h4');
+
+    const container = document.querySelector(".container");
+    const setHeightContainer = document.createElement('style');
+
+    if(groceryListItems.length == 0) {
+        groceryListMessage.classList.remove('hide');
+        groceryListMessage.innerHTML = "List is empty";
+    }
+    else {
+        groceryListMessage.classList.add('hide');
+    }
+
+    if(groceryListItems.length < 2) {
+        // Set height of pseudo-elements to 103%        
+        setHeightContainer.textContent = `.container::before, .container::after { height: 103% !important; }`;
+        document.head.appendChild(setHeightContainer);
+    }
+    else {
+        // Set height of pseudo-elements to 102%        
+        setHeightContainer.textContent = `.container::before, .container::after { height: 102% !important; }`;
+        document.head.appendChild(setHeightContainer);
+    }
+}
+
+// 5) Add items
 const formAdd = document.getElementById('add-item');
+
 // attach event listener
 formAdd.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    // global variable "groceryListUl" may be used
+    // global variable "groceryListUl" may be used as well
     const ul = document.querySelector('#grocery-list ul');
 
     // grab user's input text
@@ -67,7 +111,6 @@ formAdd.addEventListener('submit', (e) => {
 
     if(inputTextValue == "" || inputTextValue.length < 2) {
         alert("Type some item to display!");
-        inputText.focus();
     }
     else {
         // execute checkText function to check if item already exists, passing inputTextValue as argument
@@ -109,9 +152,13 @@ formAdd.addEventListener('submit', (e) => {
             ul.appendChild(li); 
         }
     }
+
+    inputText.focus();
+
+    showEmptyListMessage();
 });
 
-// 5) Search for items
+// 6) Search for items
 // const search = document.forms['search-item'].querySelector('input');
 const search = document.getElementById('search-item');
 
@@ -156,9 +203,10 @@ search.addEventListener('keyup', (e) => {
     });
 });
 
-// 6) Edit items
-groceryListUl.addEventListener('click', edit);
-function edit(e) {
+// 7) Edit items
+groceryListUl.addEventListener('click', editListItem);
+
+function editListItem(e) {
     const target = e.target;
 
     if(target.classList.contains('edit')) {
@@ -187,6 +235,10 @@ function edit(e) {
             if(e.key == 'Escape') {
                 textItem.textContent = text;
                 displayHideItem();
+            }
+
+            if(e.keyCode == 9) {
+                event.preventDefault();
             }
 
             if(e.keyCode == 13) {
